@@ -1,0 +1,3 @@
+/mnt/f/Workspace/opersys/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/f/Workspace/opersys/cmake-build-debug/CMakeFiles/Smash.dir
+/mnt/f/Workspace/opersys/cmake-build-debug/CMakeFiles/edit_cache.dir

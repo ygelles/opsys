@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mnt/f/Workspace/opersys/Commands.cpp
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.cpp
 unistd.h
 -
 string.h
@@ -24,13 +24,11 @@ sys/wait.h
 iomanip
 -
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 defines.h
-/mnt/f/Workspace/opersys/defines.h
-linux/limits.h
--
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 
-/mnt/f/Workspace/opersys/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 vector
 -
 string
@@ -38,27 +36,27 @@ string
 stack
 -
 
-/mnt/f/Workspace/opersys/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 unistd.h
 -
 
-/mnt/f/Workspace/opersys/signals.cpp
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/signals.cpp
 iostream
 -
 signal.h
 -
 signals.h
-/mnt/f/Workspace/opersys/signals.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/signals.h
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 unistd.h
 -
 defines.h
-/mnt/f/Workspace/opersys/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 
-/mnt/f/Workspace/opersys/signals.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/signals.h
 
-/mnt/f/Workspace/opersys/smash.cpp
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/smash.cpp
 iostream
 -
 unistd.h
@@ -68,9 +66,9 @@ sys/wait.h
 signal.h
 -
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 signals.h
-/mnt/f/Workspace/opersys/signals.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/signals.h
 defines.h
-/mnt/f/Workspace/opersys/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 

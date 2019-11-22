@@ -79,6 +79,7 @@ Command::Command(const char* cmd_line){
     args.erase(args.begin());
 
 
+
     debug("command: "<<cmd<<endl);
     for (unsigned int i = 0; i <args.size() ; ++i) {
         debug("arg "<<i<<":"<<args[i]<<endl);
@@ -90,6 +91,7 @@ Command::Command(const char* cmd_line){
 
 SmallShell::SmallShell() {
 // TODO: add your implementation
+
 }
 
 SmallShell::~SmallShell() {
@@ -102,7 +104,6 @@ SmallShell::~SmallShell() {
 Command * SmallShell::CreateCommand(const char* cmd_line) {
     stringstream command = stringstream(cmd_line);
     string cmd;
-    static string lastVisited= string();
 
     while(getline(command, cmd, ' ')){
         if(cmd.empty()){ continue; }// FIXME:NEED TO IGNORE TABS??
@@ -115,6 +116,9 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     if(cmd=="cd"){
         return new ChangeDirCommand(cmd_line,lastVisited);
     }
+    if(cmd=="history"){
+        return new HistoryCommand(cmd_line,cmdHist);
+    }
 
 
     return nullptr;
@@ -124,8 +128,8 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
 void SmallShell::executeCommand(const char *cmd_line) {
     // TODO: Add your implementation here
     // for example:
-
-    Command* cmd = CreateCommand(cmd_line);// FIXME: FREE!!
+    cmdHist.addRecord(cmd_line);
+    Command* cmd = CreateCommand(cmd_line);
     cmd->execute();
     delete(cmd);
     //
@@ -143,11 +147,10 @@ void ChangeDirCommand::execute() {
         errorMsg("cd", "too many arguments");
     } else{
         if(args[0]=="-"){
-
             if(lastPwd.empty()){
                 errorMsg("cd", "OLDPWD not set");
             }else{
-                string current=getcwd(nullptr,INT32_MAX);
+                string current=getcwd(nullptr,INT32_MAX);//current pwd
                 if(chdir(lastPwd.c_str())!=0){
                     errorMsgSys("chdir");
                 }else{
@@ -155,7 +158,7 @@ void ChangeDirCommand::execute() {
                 }
             }
         } else {
-            string current=getcwd(nullptr,INT32_MAX);
+            string current=getcwd(nullptr,INT32_MAX);//current pwd
             if (chdir(args[0].c_str()) != 0) {
                 errorMsgSys("chdir");
             } else {
@@ -163,4 +166,8 @@ void ChangeDirCommand::execute() {
             }
         }
     }
+}
+
+void HistoryCommand::execute() {
+    cmdHist.printHistory();
 }

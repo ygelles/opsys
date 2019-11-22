@@ -33,7 +33,11 @@ vector
 -
 string
 -
-stack
+queue
+-
+deque
+-
+iomanip
 -
 
 /cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h

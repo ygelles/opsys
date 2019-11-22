@@ -18,3 +18,4 @@
 #define errorMsgSys(sys) perror("smash error:" sys "failed")
 #define errorMsg(fn,msg) perror("smash error: " fn ": " msg)
 #endif //SMASH_DEFINES_H
+

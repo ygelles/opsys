@@ -6,9 +6,9 @@
 #define SMASH_DEFINES_H
 
 #include <unistd.h>
+#include <wait.h>
 
-
-#define DEBUG_MODE
+//#define DEBUG_MODE
 #ifdef DEBUG_MODE
 #define debug(str) std::cout<<str<<std::endl
 #else
@@ -16,5 +16,6 @@
 #endif
 
 #define errorMsgSys(sys) perror("smash error:" sys "failed")
-#define errorMsg(fn,msg) perror("smash error: " fn ":" msg)
+#define errorMsg(fn,msg) perror("smash error: " fn ": " msg)
 #endif //SMASH_DEFINES_H
+

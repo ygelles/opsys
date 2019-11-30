@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/mnt/f/Workspace/opersys/Commands.cpp
+/mnt/f/Workspace/opersys/Hw/Hw1/Commands.cpp
 unistd.h
 -
 string.h
@@ -19,46 +19,60 @@ string
 -
 sstream
 -
-sys/wait.h
+wait.h
 -
 iomanip
 -
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
 defines.h
-/mnt/f/Workspace/opersys/defines.h
-linux/limits.h
--
+/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
 
-/mnt/f/Workspace/opersys/Commands.h
+/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
 vector
 -
 string
 -
-stack
+iomanip
 -
+time.h
+-
+defines.h
+/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
+fifo50.h
+/mnt/f/Workspace/opersys/Hw/Hw1/fifo50.h
 
-/mnt/f/Workspace/opersys/defines.h
+/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
 unistd.h
 -
+wait.h
+-
 
-/mnt/f/Workspace/opersys/signals.cpp
+/mnt/f/Workspace/opersys/Hw/Hw1/fifo50.h
+vector
+-
+string
+-
+iostream
+-
+
+/mnt/f/Workspace/opersys/Hw/Hw1/signals.cpp
 iostream
 -
 signal.h
 -
 signals.h
-/mnt/f/Workspace/opersys/signals.h
+/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
 unistd.h
 -
 defines.h
-/mnt/f/Workspace/opersys/defines.h
+/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
 
-/mnt/f/Workspace/opersys/signals.h
+/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
 
-/mnt/f/Workspace/opersys/smash.cpp
+/mnt/f/Workspace/opersys/Hw/Hw1/smash.cpp
 iostream
 -
 unistd.h
@@ -68,9 +82,9 @@ sys/wait.h
 signal.h
 -
 Commands.h
-/mnt/f/Workspace/opersys/Commands.h
+/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
 signals.h
-/mnt/f/Workspace/opersys/signals.h
+/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
 defines.h
-/mnt/f/Workspace/opersys/defines.h
+/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
 

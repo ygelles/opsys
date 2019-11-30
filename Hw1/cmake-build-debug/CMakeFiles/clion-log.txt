@@ -1,4 +1,4 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "CodeBlocks - Unix Makefiles" /mnt/f/Workspace/opersys
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -G "CodeBlocks - Unix Makefiles" /mnt/f/Workspace/opersys/Hw/Hw1
 -- Configuring done
 -- Generating done
--- Build files have been written to: /mnt/f/Workspace/opersys/cmake-build-debug
+-- Build files have been written to: /mnt/f/Workspace/opersys/Hw/Hw1/cmake-build-debug

@@ -1,12 +1,14 @@
 //
 // Created by yuvalgelles on 19/11/2019.
 //
+using namespace std;
 
 #ifndef SMASH_DEFINES_H
 #define SMASH_DEFINES_H
 
 #include <unistd.h>
 #include <wait.h>
+#include <sstream>
 
 //#define DEBUG_MODE
 #ifdef DEBUG_MODE
@@ -15,7 +17,4 @@
 #define debug(str)
 #endif
 
-#define errorMsgSys(sys) perror("smash error:" sys "failed")
-#define errorMsg(fn,msg) perror("smash error: " fn ": " msg)
 #endif //SMASH_DEFINES_H
-

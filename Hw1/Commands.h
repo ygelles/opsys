@@ -12,6 +12,7 @@ using namespace std;
 #define COMMAND_ARGS_MAX_LENGTH (200)
 #define COMMAND_MAX_ARGS (20)
 #define HISTORY_MAX_RECORDS (50)
+
 class JobsList;
 class Command {
 
@@ -204,6 +205,10 @@ public:
           cout<<"["<<jobId<<"] "<<cmd<<" : "<<processId<<" ";
           cout<<(int)difftime(time(nullptr),startTime)<<" secs"<<stopped<<endl;
         }
+
+        unsigned int getJobId() const;
+
+        pid_t getProcessId() const;
     };
     vector<JobEntry> jobs;
     unsigned int jobsCounter;
@@ -220,7 +225,7 @@ public:
 
     void removeFinishedJobs();
 
-    JobEntry *getJobById(int jobId);
+    JobEntry* getJobById(int jobId);
 
     void removeJobById(int jobId);
 
@@ -242,7 +247,7 @@ public:
 class KillCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    KillCommand(const char *cmd_line, JobsList *jobs);
+    KillCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~KillCommand() {}
 

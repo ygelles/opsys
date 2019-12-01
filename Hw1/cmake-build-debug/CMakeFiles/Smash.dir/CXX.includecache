@@ -6,10 +6,12 @@
 
 #IncludeRegexTransform: 
 
-/mnt/f/Workspace/opersys/Hw/Hw1/Commands.cpp
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.cpp
 unistd.h
 -
 string.h
+-
+stdlib.h
 -
 iostream
 -
@@ -24,11 +26,11 @@ wait.h
 iomanip
 -
 Commands.h
-/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 defines.h
-/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 
-/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.h
 vector
 -
 string
@@ -38,53 +40,23 @@ iomanip
 time.h
 -
 defines.h
-/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 fifo50.h
-/mnt/f/Workspace/opersys/Hw/Hw1/fifo50.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/fifo50.h
 
-/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/defines.h
 unistd.h
 -
 wait.h
 -
+sstream
+-
 
-/mnt/f/Workspace/opersys/Hw/Hw1/fifo50.h
+/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/fifo50.h
 vector
 -
 string
 -
 iostream
 -
-
-/mnt/f/Workspace/opersys/Hw/Hw1/signals.cpp
-iostream
--
-signal.h
--
-signals.h
-/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
-Commands.h
-/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
-unistd.h
--
-defines.h
-/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
-
-/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
-
-/mnt/f/Workspace/opersys/Hw/Hw1/smash.cpp
-iostream
--
-unistd.h
--
-sys/wait.h
--
-signal.h
--
-Commands.h
-/mnt/f/Workspace/opersys/Hw/Hw1/Commands.h
-signals.h
-/mnt/f/Workspace/opersys/Hw/Hw1/signals.h
-defines.h
-/mnt/f/Workspace/opersys/Hw/Hw1/defines.h
 

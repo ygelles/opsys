@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/f/Workspace/opersys/Hw/Hw1/Commands.cpp" "/mnt/f/Workspace/opersys/Hw/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/Commands.cpp.o"
-  "/mnt/f/Workspace/opersys/Hw/Hw1/signals.cpp" "/mnt/f/Workspace/opersys/Hw/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/signals.cpp.o"
-  "/mnt/f/Workspace/opersys/Hw/Hw1/smash.cpp" "/mnt/f/Workspace/opersys/Hw/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o"
+  "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/Commands.cpp" "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/Commands.cpp.o"
+  "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/signals.cpp" "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/signals.cpp.o"
+  "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/smash.cpp" "/cygdrive/c/Users/elia/Documents/GitHub/opsys/Hw1/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

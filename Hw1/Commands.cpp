@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 #include <iostream>
 #include <vector>
 #include <string>
@@ -22,7 +23,16 @@ using namespace std;
 #endif
 
 
-
+void errorMsgSys(const string& sys){
+    ostringstream os;
+    os<<"smash error: "<< sys<< ": "<<"failed";
+    perror(os.str().c_str());
+}
+void errorMsg(const string& fn,const string& msg){
+    ostringstream os;
+    os<<"smash error: "<< fn<< ": "<< msg;
+    perror(os.str().c_str());
+}
 int _parseCommandLine(const char* cmd_line,char** args) {
     FUNC_ENTRY()
     stringstream check1(cmd_line);
@@ -121,6 +131,9 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     else if(cmd=="jobs"){
         return new JobsCommand(cmd_line);
     }
+    else if(cmd=="kill"){
+        return new KillCommand(cmd_line);
+    }
     else {
         return new ExternalCommand(cmd_line);
     }
@@ -205,9 +218,9 @@ void JobsList::addJob(string cmd,pid_t pid,bool isStopped) {
 }
 
 void JobsList::printJobsList() {
+    removeFinishedJobs();       //added: removing finished jobs before printing
     for (unsigned int i = 0; i < jobs.size(); ++i) {
         jobs.at(i).print();
-
     }
 }
 
@@ -216,15 +229,31 @@ void JobsList::killAllJobs() {
 }
 
 void JobsList::removeFinishedJobs() {
-
+    for(JobEntry& job: this->jobs ) {
+        if(waitpid(job.getProcessId(), nullptr,WNOHANG)>0){
+            removeJobById(job.getJobId());
+        }
+    }
 }
 
-JobsList::JobEntry *JobsList::getJobById(int jobId) {
+JobsList::JobEntry* JobsList::getJobById(int jobId) {
+    for(JobEntry& job: this->jobs ) {
+        if(job.getJobId()==(unsigned int)jobId){
+            return &job;
+        }
+    }
     return nullptr;
 }
 
 void JobsList::removeJobById(int jobId) {
-
+    int i=0;
+    for(JobEntry& job: jobs ) {
+        if(job.getJobId()==(unsigned int)jobId){
+            jobs.erase(jobs.begin()+i);
+            return;
+        }
+        i++;
+    }
 }
 
 JobsList::JobEntry *JobsList::getLastJob(int *lastJobId) {
@@ -238,4 +267,55 @@ JobsList::JobEntry *JobsList::getLastStoppedJob(int *jobId) {
 void JobsCommand::execute() {
     SmallShell& smash =SmallShell::getInstance();
     smash.jobsList.printJobsList();
+}
+
+unsigned int JobsList::JobEntry::getJobId() const {
+    return jobId;
+}
+
+pid_t JobsList::JobEntry::getProcessId() const {
+    return processId;
+}
+
+bool isNumber(string s)
+{
+    for (unsigned int i = 0; i < s.length(); i++)
+        if (isdigit(s[i]) == 0)
+            return false;
+
+    return true;
+}
+
+void KillCommand::execute() {
+    string tempString = cmdLine;
+    if (args.size()<=2){//right number of args
+        if((args[0].at(0))=='-'){//right format -> has '-'
+            if(isNumber(args[0].substr(1))){// right format -> first arg is a number
+                if(isNumber(args[1])){      //right format second arg is number
+                    SmallShell& smash =SmallShell::getInstance();
+                    int jobId = atoi(args[1].c_str());
+                    if(smash.jobsList.getJobById(jobId)!= nullptr){//jobExist
+                        int jobPid=smash.jobsList.getJobById(jobId)->getProcessId();
+                        int sig=atoi(args[0].substr(1).c_str());
+                        if(kill(jobPid,sig)==0){//if kill success
+                            cout<<"signal number "<<sig<<" was sent to pid "<<jobPid<<endl;
+                            return;
+                        } else{//kill failed
+                             errorMsgSys("kill");
+                             return;
+                        }
+                    } else{
+                        ostringstream error;
+                        error<<"job-id "<<jobId<< " does not exist";
+                        string msg=error.str();
+                        errorMsg("kill",msg);
+                        return;
+                    }
+                }
+
+            }
+        }
+    }
+    errorMsg("kill","invalid arguments");
+    return;
 }

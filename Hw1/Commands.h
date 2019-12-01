@@ -94,7 +94,7 @@ public:
 
 class ShowPidCommand : public BuiltInCommand {
 public:
-    ShowPidCommand(const char *cmd_line);
+    ShowPidCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~ShowPidCommand() {}
 
@@ -104,8 +104,8 @@ public:
 
 
 class QuitCommand : public BuiltInCommand {
-// TODO: Add your data members public:
-    QuitCommand(const char *cmd_line, JobsList *jobs);
+public:
+    QuitCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~QuitCommand() {}
 
@@ -209,6 +209,8 @@ public:
         unsigned int getJobId() const;
 
         pid_t getProcessId() const;
+
+        string getCmdLine() const;
     };
     vector<JobEntry> jobs;
     unsigned int jobsCounter;
@@ -229,7 +231,7 @@ public:
 
     void removeJobById(int jobId);
 
-    JobEntry *getLastJob(int *lastJobId);
+    JobEntry *getLastJob();
 
     JobEntry *getLastStoppedJob(int *jobId);
     // TODO: Add extra methods or modify exisitng ones as needed
@@ -257,7 +259,7 @@ public:
 class ForegroundCommand : public BuiltInCommand {
     // TODO: Add your data members
 public:
-    ForegroundCommand(const char *cmd_line, JobsList *jobs);
+    ForegroundCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~ForegroundCommand() {}
 
@@ -295,7 +297,8 @@ private:
 public:
 
     JobsList jobsList;
-
+    pid_t fgPid;
+    string fgCmdLine;
 
     Command *CreateCommand(const char *cmd_line);
 

@@ -15,6 +15,8 @@ int main(int argc, char* argv[]) {
   }
 
   SmallShell& smash = SmallShell::getInstance();
+  smash.fgPid=-1;
+  smash.fgCmdLine="";
   while(true) {
     std::cout << "smash> ";
     std::string cmd_line;

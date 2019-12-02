@@ -1,1 +1,0 @@
-/usr/bin/g++  -Wall -Werror -g   CMakeFiles/Smash.dir/smash.cpp.o CMakeFiles/Smash.dir/Commands.cpp.o CMakeFiles/Smash.dir/signals.cpp.o  -o Smash 

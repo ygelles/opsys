@@ -17,7 +17,7 @@ void ctrlZHandler(int sig_num) {
     }
 
     kill(Smash.fgPid,SIGSTOP);
-    cout<<"smash: process "<<getpid()<<" was stopped"<<endl;
+    cout<<"smash: process "<<Smash.fgPid<<" was stopped"<<endl;
   }
 }
 
@@ -25,7 +25,7 @@ void ctrlCHandler(int sig_num) {
     cout<<"smash: got ctrl-C"<<endl;
     if(Smash.fgPid != -1){
       kill(Smash.fgPid,SIGKILL);
-      cout<<"smash: process "<<getpid()<<" was killed"<<endl;
+      cout<<"smash: process "<<Smash.fgPid<<" was killed"<<endl;
     }
 
 }

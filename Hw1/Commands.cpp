@@ -9,6 +9,9 @@
 #include <wait.h>
 #include <signal.h>
 #include <iomanip>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include "Commands.h"
 #include "defines.h"
 using namespace std;
@@ -155,6 +158,9 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     else if(cmd=="bg"){
       return new BackgroundCommand(cmd_line);
     }
+    else if(cmd=="cp"){
+        return new CopyCommand(cmd_line);
+    }
     else {
         return new ExternalCommand(cmd_line);
     }
@@ -165,7 +171,6 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
 
 
 void SmallShell::executeCommand(const char *cmd_line) {
-
     Smash.jobsList.removeFinishedJobs();
     cmdHist.addRecord(cmd_line);
     Command* cmd = CreateCommand(cmd_line);
@@ -453,4 +458,37 @@ void BackgroundCommand::execute() {
     Smash.jobsList.getJobById(atoi(args[0].c_str()))->setStopped(false);
   }
   kill(tempPid,SIGCONT);
+}
+
+inline bool exists (const string& name) {
+    return ( access( name.c_str(), F_OK ) != -1 );
+}
+void CopyCommand::execute() {
+    string src=args[0];
+    string dst=args[1];
+    string buf;
+    char charRead;
+    int numOfBytes;
+    int srcFd=open(src.c_str(),O_RDONLY);
+    int dstFd;
+    if(srcFd!=-1){    //opening src succeeded
+
+        numOfBytes = read(srcFd, &charRead, 1);
+        while(numOfBytes>0){
+            buf.push_back(charRead);
+            numOfBytes = read(srcFd, &charRead, 1);
+        }
+        if(numOfBytes==0) {//reading src succeeded
+            if ((exists(dst)&&remove(dst.c_str()) != -1)||(!exists(dst))) {//removing dst succeeded
+                dstFd=open(dst.c_str(),O_CREAT|O_WRONLY,0644);
+                if(dstFd!=-1){  //opening dst succeeded
+                    if(write(dstFd,buf.c_str(),buf.size())!=-1){//writing to dst succeeded
+                        cout<<"smash: "<<src<<" was copied to "<<dst<<endl;
+                    }//writing to dst failed
+                }//opening dst failed
+            }//removing dst failed
+        }//reading src failed
+    } else{ //open src failed
+        errorMsgSys("copy");
+    }
 }

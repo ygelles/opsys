@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Smash" targetName="Smash" />
     </generated>
@@ -12,13 +12,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a728e164-06a0-4b01-b61a-6c411a9fb1fc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commands.h" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.h" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Smash" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Smash" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/Commands.o" beforeDir="false" afterPath="$PROJECT_DIR$/Commands.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/cmake_clean.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Smash.dir/smash.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Smash.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Smash.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Smash.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Smash.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defines.h" beforeDir="false" afterPath="$PROJECT_DIR$/defines.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signals.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/signals.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signals.o" beforeDir="false" afterPath="$PROJECT_DIR$/signals.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smash" beforeDir="false" afterPath="$PROJECT_DIR$/smash" afterDir="false" />
+>>>>>>> a69d167534f8198d1c459bf0619bf47748b112c2
     </list>
-    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +68,7 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+<<<<<<< HEAD
   <component name="FUSProjectUsageTrigger">
     <session id="486728697">
       <usages-collector id="statistics.file.extensions.edit">
@@ -146,6 +186,8 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> a69d167534f8198d1c459bf0619bf47748b112c2
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -153,6 +195,7 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="FindInProjectRecents">
     <findStrings>
       <find>SmallShell::getInstance()</find>
@@ -192,28 +235,15 @@
     <option name="width" value="1382" />
     <option name="height" value="743" />
   </component>
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+>>>>>>> a69d167534f8198d1c459bf0619bf47748b112c2
   <component name="ProjectId" id="1TuzAknTvEXgBCr1Fk4ol8QDRZf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Smash" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Hw1" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -234,7 +264,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Smash">
+  <component name="RunManager" selected="CMake Application.Smash">
     <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Smash" RUN_TARGET_NAME="Smash" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -251,10 +281,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Build All" />
-      <item itemvalue="Application.Smash" />
-      <item itemvalue="Application.smash" />
+      <item itemvalue="CMake Application.Build All" />
+      <item itemvalue="CMake Application.Smash" />
+      <item itemvalue="CMake Application.smash" />
     </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -279,6 +319,7 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="16408000" />
   </component>
@@ -330,6 +371,8 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout-to-restore>
   </component>
+=======
+>>>>>>> a69d167534f8198d1c459bf0619bf47748b112c2
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -339,12 +382,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -368,6 +405,7 @@
       </configuration>
     </watches-manager>
   </component>
+<<<<<<< HEAD
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/defines.h">
       <provider selected="true" editor-type-id="text-editor">
@@ -451,4 +489,6 @@
       </provider>
     </entry>
   </component>
+=======
+>>>>>>> a69d167534f8198d1c459bf0619bf47748b112c2
 </project>

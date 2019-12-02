@@ -15,7 +15,7 @@ using namespace std;
 #ifdef DEBUG_MODE
 #define debug(str) std::cout<<str<<std::endl
 #else
-#define debug(str)
+#define debug(str) cout<<str<<endl
 #endif
 
 #endif //SMASH_DEFINES_H

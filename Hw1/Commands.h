@@ -284,7 +284,7 @@ public:
 
 class CopyCommand : public BuiltInCommand {
 public:
-    CopyCommand(const char *cmd_line);
+    CopyCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~CopyCommand() {}
 
@@ -299,7 +299,6 @@ private:
     string lastVisited;             // last visited address
 
     SmallShell();
-
 public:
 
     JobsList jobsList;

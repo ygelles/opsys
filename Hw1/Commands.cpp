@@ -119,7 +119,6 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
         if(cmd.empty()){ continue; }// FIXME:NEED TO IGNORE TABS??
         break;
     }
-
     if(cmd=="pwd"){
         return new GetCurrDirCommand(cmd_line);
     }

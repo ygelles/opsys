@@ -143,6 +143,9 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
     else if(cmd=="fg"){
         return new ForegroundCommand(cmd_line);
     }
+    else if(cmd=="bg"){
+      return new BackgroundCommand(cmd_line);
+    }
     else {
         return new ExternalCommand(cmd_line);
     }
@@ -154,15 +157,11 @@ Command * SmallShell::CreateCommand(const char* cmd_line) {
 
 void SmallShell::executeCommand(const char *cmd_line) {
 
-    // for example:
+    Smash.jobsList.removeFinishedJobs();
     cmdHist.addRecord(cmd_line);
     Command* cmd = CreateCommand(cmd_line);
     cmd->execute();
     delete(cmd);
-    //
-    // Command cmd= Command(cmd_line);
-    // cmd->execute();
-    // Please note that you must fork smash process for some commands (e.g., external commands....)
 }
 
 void GetCurrDirCommand::execute() {
@@ -250,6 +249,11 @@ void JobsList::removeFinishedJobs() {
         if(waitpid(job.getProcessId(), nullptr,WNOHANG)>0){
             removeJobById(job.getJobId());
         }
+        if(!this->jobs.empty()){
+          jobsCounter=jobs.at(jobs.size()-1).getJobId();
+        } else {
+          jobsCounter=0;
+        }
     }
 }
 
@@ -260,6 +264,14 @@ JobsList::JobEntry* JobsList::getJobById(int jobId) {
         }
     }
     return nullptr;
+}
+JobsList::JobEntry* JobsList::getJobByPid(pid_t pid) {
+  for(JobEntry& job: this->jobs ) {
+    if(job.getProcessId() == pid){
+      return &job;
+    }
+  }
+  return nullptr;
 }
 
 void JobsList::removeJobById(int jobId) {
@@ -280,10 +292,14 @@ JobsList::JobEntry *JobsList::getLastJob() {
     return nullptr;
 }
 
-JobsList::JobEntry *JobsList::getLastStoppedJob(int *jobId) {
-    return nullptr;
+JobsList::JobEntry *JobsList::getLastStoppedJob() {
+  for (unsigned int i = jobs.size(); i > 0; --i) {
+      if(jobs.at(i-1).getStopped()){
+        return &jobs.at(i-1);
+      }
+  }
+  return nullptr;
 }
-
 void JobsCommand::execute() {
     Smash.jobsList.printJobsList();
 }
@@ -297,6 +313,13 @@ pid_t JobsList::JobEntry::getProcessId() const {
 }
 string JobsList::JobEntry::getCmdLine() const {
   return cmd;
+}
+
+const bool JobsList::JobEntry::getStopped() const {
+  return (stopped != "");
+}
+void JobsList::JobEntry::setStopped(bool isStopped){
+    this->stopped = (isStopped) ? " (stopped)" : "";
 }
 bool isNumber(string s)
 {
@@ -364,7 +387,6 @@ void ForegroundCommand::execute() {
           } else {
             tempPid =Smash.jobsList.getLastJob()->getProcessId();
             tempCmdLine=Smash.jobsList.getLastJob()->getCmdLine();
-            Smash.jobsList.removeJobById(Smash.jobsList.getLastJob()->getJobId());
           }
         } else {
             cout<<"smash error: fg: invalid arguments"<<endl;
@@ -379,9 +401,7 @@ void ForegroundCommand::execute() {
     } else {
       tempPid = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getProcessId();
       tempCmdLine=Smash.jobsList.getJobById(atoi(args[0].c_str()))->getCmdLine();
-      Smash.jobsList.removeJobById(atoi(args[0].c_str()));
     }
-
     kill(tempPid,SIGCONT);
     Smash.fgPid=tempPid;
     Smash.fgCmdLine=tempCmdLine;
@@ -389,4 +409,37 @@ void ForegroundCommand::execute() {
     Smash.fgPid=-1;
     Smash.fgCmdLine="";
 
+}
+
+void BackgroundCommand::execute() {
+  pid_t tempPid=-1;
+  string tempCmdLine="";
+  if(args.size() != 1){
+    if(args.empty()){
+      if(Smash.jobsList.getLastStoppedJob() == nullptr){
+        cout<<"smash error: bg: there is no stopped jobs to resume"<<endl;
+      } else {
+        tempPid =Smash.jobsList.getLastStoppedJob()->getProcessId();
+        tempCmdLine=Smash.jobsList.getLastStoppedJob()->getCmdLine();
+        Smash.jobsList.getLastStoppedJob()->setStopped(false);
+      }
+    } else {
+      cout<<"smash error: bg: invalid arguments"<<endl;
+      return;
+    }
+  } else if(!isNumber(args[0])){
+    cout<<"smash error: bg: invalid arguments"<<endl;
+    return;
+  } else if(Smash.jobsList.getJobById(atoi(args[0].c_str())) == nullptr) {
+    cout << "smash error: bg: job-id " << args[0] << " does not exist" << endl;
+    return;
+  } else if(!Smash.jobsList.getJobById(atoi(args[0].c_str()))->getStopped()){
+    cout << "smash error: bg: job-id " << args[0] << " is already running in the background" << endl;
+    return;
+  } else {
+    tempPid = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getProcessId();
+    tempCmdLine=Smash.jobsList.getJobById(atoi(args[0].c_str()))->getCmdLine();
+    Smash.jobsList.getJobById(atoi(args[0].c_str()))->setStopped(false);
+  }
+  kill(tempPid,SIGCONT);
 }

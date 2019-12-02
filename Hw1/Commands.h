@@ -192,6 +192,8 @@ public:
         pid_t processId;
         time_t startTime;
         string stopped;
+
+
     public:
         JobEntry(string cmd,unsigned int jobId,pid_t processId,time_t startTime,bool isStopped):
         cmd(cmd),jobId(jobId),processId(processId),startTime(startTime){
@@ -205,6 +207,10 @@ public:
           cout<<"["<<jobId<<"] "<<cmd<<" : "<<processId<<" ";
           cout<<(int)difftime(time(nullptr),startTime)<<" secs"<<stopped<<endl;
         }
+
+        const bool getStopped() const;
+
+        void setStopped(bool isStopped);
 
         unsigned int getJobId() const;
 
@@ -233,8 +239,9 @@ public:
 
     JobEntry *getLastJob();
 
-    JobEntry *getLastStoppedJob(int *jobId);
-    // TODO: Add extra methods or modify exisitng ones as needed
+    JobEntry *getLastStoppedJob();
+
+    JobEntry* getJobByPid(pid_t pid);
 };
 
 class JobsCommand : public BuiltInCommand {
@@ -267,9 +274,8 @@ public:
 };
 
 class BackgroundCommand : public BuiltInCommand {
-    // TODO: Add your data members
 public:
-    BackgroundCommand(const char *cmd_line, JobsList *jobs);
+    BackgroundCommand(const char *cmd_line):BuiltInCommand(cmd_line){}
 
     virtual ~BackgroundCommand() {}
 
@@ -299,6 +305,7 @@ public:
     JobsList jobsList;
     pid_t fgPid;
     string fgCmdLine;
+
 
     Command *CreateCommand(const char *cmd_line);
 

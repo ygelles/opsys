@@ -10,7 +10,12 @@ using namespace std;
 void ctrlZHandler(int sig_num) {
   cout<<"smash: got ctrl-Z"<<endl;
   if(Smash.fgPid != -1){
-    Smash.jobsList.addJob(Smash.fgCmdLine,Smash.fgPid, true);
+    if(Smash.jobsList.getJobByPid(Smash.fgPid) == nullptr){
+      Smash.jobsList.addJob(Smash.fgCmdLine,Smash.fgPid, true);
+    } else {
+      Smash.jobsList.getJobByPid(Smash.fgPid)->setStopped(true);
+    }
+
     kill(Smash.fgPid,SIGSTOP);
     cout<<"smash: process "<<getpid()<<" was stopped"<<endl;
   }

@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <fcntl.h>
 #include <string.h>
 #include <stdlib.h>
 #include <iostream>
@@ -78,7 +79,7 @@ void _removeBackgroundSign(char* cmd_line) {
 
 
 
-Command::Command(const char* cmd_line){
+Command::Command(const char* cmd_line,int inFile,int outFile, int errFile){
     stringstream command = stringstream(cmd_line);
     args = vector<string>();
     string intermediate;
@@ -89,15 +90,23 @@ Command::Command(const char* cmd_line){
     cmd=args.at(0);
     args.erase(args.begin());
     cmdLine=string(cmd_line);
-
-
-    debug("command: "<<cmd<<endl);
-    for (unsigned int i = 0; i <args.size() ; ++i) {
-        debug("arg "<<i<<":"<<args[i]<<endl);
-    }
+    this->inputFile=inFile;
+    this->outputFile=outFile;
+    this->errorFile=errFile;
 
 }
 
+void Command::prepare() {
+    dup2(0,inputFile);
+    dup2(1,outputFile);
+    dup2(2,errorFile);
+}
+
+void Command::cleanup() {
+    dup2(0,inputFile);
+    dup2(1,outputFile);
+    dup2(2,errorFile);
+}
 
 
 SmallShell::SmallShell() {
@@ -160,7 +169,9 @@ void SmallShell::executeCommand(const char *cmd_line) {
     Smash.jobsList.removeFinishedJobs();
     cmdHist.addRecord(cmd_line);
     Command* cmd = CreateCommand(cmd_line);
+    cmd->prepare();
     cmd->execute();
+    cmd->cleanup();
     delete(cmd);
 }
 

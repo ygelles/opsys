@@ -20,16 +20,18 @@ protected:
     string cmdLine;
     string cmd; //FIXME may be not use
     vector<string> args;
+    int inputFile;
+    int outputFile;
+    int errorFile;
 
 public:
-    Command(const char *cmd_line);
+    Command(const char *cmd_line,int inputFile= 0,int outputFile= 1, int errorFile= 2);
 
     virtual ~Command() = default;
 
     virtual void execute() = 0;
-    //virtual void prepare();
-    //virtual void cleanup();
-    // TODO: Add your extra methods if needed
+    virtual void prepare();
+    virtual void cleanup();
 };
 
 class BuiltInCommand : public Command {

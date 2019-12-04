@@ -27,5 +27,9 @@ void ctrlCHandler(int sig_num) {
       kill(Smash.fgPid,SIGKILL);
       cout<<"smash: process "<<Smash.fgPid<<" was killed"<<endl;
     }
-
+#ifdef DEBUG_MODE
+    else{
+        exit(0);
+    }
+#endif
 }

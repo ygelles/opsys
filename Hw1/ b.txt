@@ -1,0 +1,2 @@
+smash: got ctrl-Z
+smash: process 27223 was stopped

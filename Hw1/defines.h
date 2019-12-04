@@ -11,11 +11,11 @@ using namespace std;
 #include <sstream>
 
 #define Smash SmallShell::getInstance()
-//#define DEBUG_MODE
+#define DEBUG_MODE
 #ifdef DEBUG_MODE
 #define debug(str) std::cout<<str<<std::endl
 #else
-#define debug(str) cout<<str<<endl
+#define debug(str)
 #endif
 
 #endif //SMASH_DEFINES_H

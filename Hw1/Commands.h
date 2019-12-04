@@ -20,18 +20,15 @@ protected:
     string cmdLine;
     string cmd; //FIXME may be not use
     vector<string> args;
-    int inputFile;
-    int outputFile;
-    int errorFile;
+
 
 public:
-    Command(const char *cmd_line,int inputFile= 0,int outputFile= 1, int errorFile= 2);
+    Command(const char *cmd_line);
 
     virtual ~Command() = default;
 
     virtual void execute() = 0;
-    virtual void prepare();
-    virtual void cleanup();
+
 };
 
 class BuiltInCommand : public Command {
@@ -53,7 +50,7 @@ public:
 class PipeCommand : public Command {
     // TODO: Add your data members
 public:
-    PipeCommand(const char *cmd_line);
+    PipeCommand(const char *cmd_line):Command(cmd_line){}
 
     virtual ~PipeCommand() {}
 
@@ -63,7 +60,7 @@ public:
 class RedirectionCommand : public Command {
     // TODO: Add your data members
 public:
-    explicit RedirectionCommand(const char *cmd_line);
+    explicit RedirectionCommand(const char *cmd_line):Command(cmd_line){}
 
     virtual ~RedirectionCommand() {}
 

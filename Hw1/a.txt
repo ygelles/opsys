@@ -1,1 +1,22 @@
-ding
+a.txt
+ b.txt
+b.txt
+cmake-build-debug
+CMakeLists.txt
+Commands.cpp
+Commands.h
+Commands.o
+defines.h
+fifo50.h
+Makefile
+signals.cpp
+signals.h
+signals.o
+smash
+smash.cpp
+smash.o
+smash_skeleton.zip
+test_expected_output1.txt
+test_input1.txt
+test_output1.txt
+WHW1.pdf

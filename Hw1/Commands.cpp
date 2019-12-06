@@ -119,11 +119,11 @@ Command *SmallShell::CreateCommand(const char *cmd_line) {
         break;
     }
     string commandLine = string(cmd_line);
-    if (commandLine.find('>') < commandLine.size()) {
-        return new RedirectionCommand(cmd_line);
-    }
     if (commandLine.find('|') < commandLine.size()) {
         return new PipeCommand(cmd_line);
+    }
+    if (commandLine.find('>') < commandLine.size()) {
+        return new RedirectionCommand(cmd_line);
     }
     if (cmd == "pwd") {
         return new GetCurrDirCommand(cmd_line);
@@ -523,12 +523,15 @@ void PipeCommand::execute() {
     if (pipe(fds) < 0) {
         exit(1);//FIXME:perror
     }
-    int pipeSpot = cmdLine.find('|');
+    size_t pipeSpot = cmdLine.find('|');
     string cmd1 = cmdLine.substr(0, pipeSpot);
     string cmd2 = cmdLine.substr(pipeSpot + 1, cmdLine.size() - pipeSpot - 1);
     if (cmd2.at(0) == '&') {
         pipeOut = 2;
         cmd2.erase(cmd2.begin());
+    }
+    if (!cmd2.empty() && cmd2.at(cmd2.size() - 1) == '&') {
+        cmd2.pop_back();
     }
     //FIXME:BG
     int pid1 = fork();
@@ -554,17 +557,18 @@ void PipeCommand::execute() {
         exit(0);//exit shell in son process
     }
     //parent process
+    close(fds[0]);
+    close(fds[1]);
     if (!cmdLine.empty() && cmdLine.at(cmdLine.size() - 1) == '&') {
-        Smash.jobsList.addJob(cmdLine, pid1);
+        Smash.jobsList.addJob(cmdLine, pid2);
     } else {
-        Smash.fgPid = pid1;
+        Smash.fgPid = pid2;
         Smash.fgCmdLine = cmdLine;
-        waitpid(pid1, nullptr, WUNTRACED);
+        waitpid(pid2, nullptr, WUNTRACED);
         Smash.fgPid = -1;
         Smash.fgCmdLine = "";
     }
-    close(fds[0]);
-    close(fds[1]);
+
 }
 
 

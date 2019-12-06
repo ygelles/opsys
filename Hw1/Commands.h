@@ -130,7 +130,7 @@ protected:
         }
 
         friend ostream &operator<<(ostream &os, const CommandHistoryEntry &cmdE) {
-            os << right << std::setw(5) << cmdE.timeStamp << " " << cmdE.cmdLine << endl;
+            os << right << std::setw(5) << cmdE.timeStamp << "  " << cmdE.cmdLine << endl;
             return os;
         }
 

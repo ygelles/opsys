@@ -31,7 +31,7 @@ using namespace std;
 
 void errorMsgSys(const string &sys) {
     ostringstream os;
-    os << "smash error: " << sys << ": " << "failed";
+    os << "smash error: " << sys << " failed";
     perror(os.str().c_str());
 }
 
@@ -155,13 +155,11 @@ Command *SmallShell::CreateCommand(const char *cmd_line) {
 
 
 void SmallShell::executeCommand(const char *cmd_line) {
-    Smash.jobsList.removeFinishedJobs();
     cmdHist.addRecord(cmd_line);
     Command *cmd = CreateCommand(cmd_line);
-
     cmd->execute();
-
     delete (cmd);
+    Smash.jobsList.removeFinishedJobs();
 }
 
 void GetCurrDirCommand::execute() {
@@ -170,11 +168,11 @@ void GetCurrDirCommand::execute() {
 
 void ChangeDirCommand::execute() {
     if (args.size() > 1) {
-        errorMsg("cd", "too many arguments");
+        cerr<<"smash error: cd: too many arguments"<<endl;
     } else {
         if (args[0] == "-") {
             if (lastPwd.empty()) {
-                errorMsg("cd", "OLDPWD not set");
+                cerr<<"smash error: cd: OLDPWD not set"<<endl;
             } else {
                 string current = getcwd(nullptr, INT32_MAX);//current pwd
                 if (chdir(lastPwd.c_str()) != 0) {
@@ -203,11 +201,19 @@ void ExternalCommand::execute() {
     if (!cmdLine.empty() && cmdLine.at(cmdLine.size() - 1) == '&') {
         tempString.pop_back();
     }
-    pid_t tempPid = fork();
-    if (tempPid < 0) { debug("error"); }
+    pid_t tempPid = vfork();
+    if (tempPid < 0) { debug("fork error error number is:"<<errno); }
     if (tempPid == 0) {
         setpgrp();
-        execl("/bin/bash", "bash", "-c", tempString.c_str(), NULL);
+        /*if(tempString.find('*')<tempString.size() || tempString.find('?')<tempString.size()){
+            execlp("/bin/bash", "bash", "-c", tempString.c_str(), NULL);
+            exit(0);
+        }else{
+            execlp(cmd.c_str(), tempString.c_str(), NULL);
+            exit(0);
+        }*/
+        execlp("/bin/bash", "bash", "-c", tempString.c_str(), NULL);
+        exit(0);
     } else {
         if (!cmdLine.empty() && cmdLine.at(cmdLine.size() - 1) == '&') {
             Smash.jobsList.addJob(cmdLine, tempPid);
@@ -286,15 +292,17 @@ void JobsList::removeJobById(int jobId) {
 }
 
 JobsList::JobEntry *JobsList::getLastJob() {
-    if (!jobs.empty()) {
-        return &jobs.at(jobs.size() - 1);
+  for (unsigned int i = jobs.size(); i > 0; --i) {
+    if (jobs.at(i - 1).visible) {
+      return &jobs.at(i - 1);
     }
-    return nullptr;
+  }
+  return nullptr;
 }
 
 JobsList::JobEntry *JobsList::getLastStoppedJob() {
     for (unsigned int i = jobs.size(); i > 0; --i) {
-        if (jobs.at(i - 1).getStopped()) {
+        if (jobs.at(i - 1).getStopped() && jobs.at(i - 1).visible) {
             return &jobs.at(i - 1);
         }
     }
@@ -352,10 +360,7 @@ void KillCommand::execute() {
                             return;
                         }
                     } else {
-                        ostringstream error;
-                        error << "job-id " << jobId << " does not exist";
-                        string msg = error.str();
-                        errorMsg("kill", msg);
+                        cerr <<"smash error: kill: job-id " << jobId << " does not exist"<<endl;
                         return;
                     }
                 }
@@ -363,7 +368,7 @@ void KillCommand::execute() {
             }
         }
     }
-    errorMsg("kill", "invalid arguments");
+    cerr <<"smash error: kill: invalid arguments"<<endl;
     return;
 }
 
@@ -381,30 +386,41 @@ void QuitCommand::execute() {
 }
 
 void ForegroundCommand::execute() {
+    Smash.jobsList.removeFinishedJobs();
     pid_t tempPid = -1;
     string tempCmdLine = "";
     if (args.size() != 1) {
         if (args.empty()) {
             if (Smash.jobsList.getLastJob() == nullptr) {
-                cout << "smash error: fg: jobs list is empty" << endl;
+                cerr << "smash error: fg: jobs list is empty" << endl;
+                return;
             } else {
                 tempPid = Smash.jobsList.getLastJob()->getProcessId();
                 tempCmdLine = Smash.jobsList.getLastJob()->getCmdLine();
+               Smash.jobsList.getLastJob()->visible = false;
+               Smash.jobsList.getLastJob()->resetTime();
             }
         } else {
-            cout << "smash error: fg: invalid arguments" << endl;
+            cerr << "smash error: fg: invalid arguments" << endl;
             return;
         }
     } else if (!isNumber(args[0])) {
-        cout << "smash error: fg: invalid arguments" << endl;
+        cerr << "smash error: fg: invalid arguments" << endl;
         return;
     } else if (Smash.jobsList.getJobById(atoi(args[0].c_str())) == nullptr) {
-        cout << "smash error: fg: job-id " << args[0] << " does not exist" << endl;
+        cerr << "smash error: fg: job-id " << args[0] << " does not exist" << endl;
+        return;
+    } else if (!Smash.jobsList.getJobById(atoi(args[0].c_str()))->visible) {
+        cerr << "smash error: fg: job-id " << args[0] << " does not exist" << endl;
         return;
     } else {
         tempPid = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getProcessId();
         tempCmdLine = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getCmdLine();
+        Smash.jobsList.getJobById(atoi(args[0].c_str()))->visible = false;
+        Smash.jobsList.getJobById(atoi(args[0].c_str()))->resetTime();
     }
+
+    cout<<tempCmdLine<<" : "<<tempPid<<endl;
     kill(tempPid, SIGCONT);
     Smash.fgPid = tempPid;
     Smash.fgCmdLine = tempCmdLine;
@@ -415,35 +431,44 @@ void ForegroundCommand::execute() {
 }
 
 void BackgroundCommand::execute() {
+    Smash.jobsList.removeFinishedJobs();
     pid_t tempPid = -1;
     string tempCmdLine = "";
     if (args.size() != 1) {
         if (args.empty()) {
             if (Smash.jobsList.getLastStoppedJob() == nullptr) {
-                cout << "smash error: bg: there is no stopped jobs to resume" << endl;
+                cerr << "smash error: bg: there is no stopped jobs to resume" << endl;
+                return;
             } else {
                 tempPid = Smash.jobsList.getLastStoppedJob()->getProcessId();
                 tempCmdLine = Smash.jobsList.getLastStoppedJob()->getCmdLine();
                 Smash.jobsList.getLastStoppedJob()->setStopped(false);
+                Smash.jobsList.getLastStoppedJob()->resetTime();
             }
         } else {
-            cout << "smash error: bg: invalid arguments" << endl;
+            cerr << "smash error: bg: invalid arguments" << endl;
             return;
         }
     } else if (!isNumber(args[0])) {
-        cout << "smash error: bg: invalid arguments" << endl;
+        cerr << "smash error: bg: invalid arguments" << endl;
         return;
     } else if (Smash.jobsList.getJobById(atoi(args[0].c_str())) == nullptr) {
-        cout << "smash error: bg: job-id " << args[0] << " does not exist" << endl;
+      cerr << "smash error: bg: job-id " << args[0] << " does not exist"
+           << endl;
+      return;
+    } else if (!Smash.jobsList.getJobById(atoi(args[0].c_str()))->visible) {
+        cerr << "smash error: bg: job-id " << args[0] << " does not exist" << endl;
         return;
     } else if (!Smash.jobsList.getJobById(atoi(args[0].c_str()))->getStopped()) {
-        cout << "smash error: bg: job-id " << args[0] << " is already running in the background" << endl;
+        cerr << "smash error: bg: job-id " << args[0] << " is already running in the background" << endl;
         return;
     } else {
         tempPid = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getProcessId();
         tempCmdLine = Smash.jobsList.getJobById(atoi(args[0].c_str()))->getCmdLine();
         Smash.jobsList.getJobById(atoi(args[0].c_str()))->setStopped(false);
+        Smash.jobsList.getJobById(atoi(args[0].c_str()))->resetTime();
     }
+    cout<<tempCmdLine<<" : "<<tempPid<<endl;
     kill(tempPid, SIGCONT);
 }
 
@@ -473,11 +498,13 @@ void CopyCommand::execute() {
                     if (write(dstFd, buf.c_str(), buf.size()) != -1) {//writing to dst succeeded
                         cout << "smash: " << src << " was copied to " << dst << endl;
                     }//writing to dst failed
+                } else {
+                    errorMsgSys("open");
                 }//opening dst failed
             }//removing dst failed
         }//reading src failed
     } else { //open src failed
-        errorMsgSys("copy");
+        errorMsgSys("open");
     }
 }
 

@@ -193,9 +193,11 @@ public:
         string stopped;
 
 
+
     public:
+        bool visible;
         JobEntry(string cmd,unsigned int jobId,pid_t processId,time_t startTime,bool isStopped):
-        cmd(cmd),jobId(jobId),processId(processId),startTime(startTime){
+        cmd(cmd),jobId(jobId),processId(processId),startTime(startTime),visible(true){
           if(isStopped){
             stopped=" (stopped)";
           } else {
@@ -203,8 +205,10 @@ public:
           }
         }
        void print(){
-          cout<<"["<<jobId<<"] "<<cmd<<" : "<<processId<<" ";
-          cout<<(int)difftime(time(nullptr),startTime)<<" secs"<<stopped<<endl;
+          if(visible){
+            cout<<"["<<jobId<<"] "<<cmd<<" : "<<processId<<" ";
+            cout<<(int)difftime(time(nullptr),startTime)<<" secs"<<stopped<<endl;
+          }
         }
 
         const bool getStopped() const;
@@ -216,6 +220,10 @@ public:
         pid_t getProcessId() const;
 
         string getCmdLine() const;
+
+        void resetTime(){
+          startTime=time(nullptr);
+        }
     };
     vector<JobEntry> jobs;
     unsigned int jobsCounter;

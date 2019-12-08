@@ -14,6 +14,7 @@ void ctrlZHandler(int sig_num) {
       Smash.jobsList.addJob(Smash.fgCmdLine,Smash.fgPid, true);
     } else {
       Smash.jobsList.getJobByPid(Smash.fgPid)->setStopped(true);
+      Smash.jobsList.getJobByPid(Smash.fgPid)->visible = true;
     }
 
     kill(Smash.fgPid,SIGSTOP);

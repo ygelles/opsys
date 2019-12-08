@@ -11,7 +11,7 @@ using namespace std;
 #include <sstream>
 
 #define Smash SmallShell::getInstance()
-#define DEBUG_MODE
+//#define DEBUG_MODE
 #ifdef DEBUG_MODE
 #define debug(str) std::cout<<str<<std::endl
 #else

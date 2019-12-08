@@ -24,6 +24,7 @@ int main(int argc, char* argv[]) {
     cmd_line.push_back(0);
     if(!cmd_line.empty() && cmd_line.find_first_not_of(" ") != cmd_line.size() -1 ) {
       cmd_line.pop_back();
+      //cout<<cmd_line<<endl;//fixme
       smash.executeCommand(cmd_line.c_str());
 
     }

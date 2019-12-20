@@ -1,19 +1,14 @@
-smash> smash> smash> smash> smash> smash>     1  sleep 1
-    2  sleep 2
-    3  sleep 3
-    4  sleep 5&
-    5  sleep 10&
-    6  history
-smash>     1  sleep 1
-    2  sleep 2
-    3  sleep 3
-    4  sleep 5&
-    5  sleep 10&
-    7  history
-smash>     1  sleep 1
-    2  sleep 2
-    3  sleep 3
-    4  sleep 5&
-    5  sleep 10&
-    8  history
-smash> smash> smash: sending SIGKILL signal to 0 jobs:
+smash> sleep: invalid time interval ‘1\r’
+Try 'sleep --help' for more information.
+smash> sleep: invalid time interval ‘2\r’
+Try 'sleep --help' for more information.
+smash> sleep: invalid time interval ‘3\r’
+Try 'sleep --help' for more information.
+smash> bash: $'\r': command not found
+smash> bash: $'\r': command not found
+smash> bash: $'history\r': command not found
+smash> bash: $'history\r': command not found
+smash> bash: $'history\r': command not found
+smash> sleep: invalid time interval ‘10\r’
+Try 'sleep --help' for more information.
+smash> 

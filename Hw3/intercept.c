@@ -33,7 +33,7 @@ asmlinkage long our_sys_kill(int pid, int sig){
 }
 
 /*
-This function updates the entry of the kill system call in the system call table to point to our_syscall. 
+This function updates the entry of the kill system call in the system call table to point to our_syscall.
 */
 void plug_our_syscall(void){
   allow_rw((unsigned long)sys_call_table);
@@ -43,7 +43,7 @@ void plug_our_syscall(void){
 }
 
 /*
-This function updates the entry of the kill system call in the system call table to point to the original kill system call. 
+This function updates the entry of the kill system call in the system call table to point to the original kill system call.
 */
 void unplug_our_syscall(void){
   allow_rw((unsigned long)sys_call_table);
@@ -52,7 +52,7 @@ void unplug_our_syscall(void){
 }
 
 /*
-turns on the R/W flag for addr. 
+turns on the R/W flag for addr.
 */
 void allow_rw(unsigned long addr){
   unsigned int level;

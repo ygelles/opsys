@@ -24,7 +24,7 @@ module_param(program_name,charp,0660);//TODO get prog name
 asmlinkage long (*original_syscall)(int pid, int sig);
 
 asmlinkage long our_sys_kill(int pid, int sig){
-  printk("program name=%s, Bill name=%s, signal=%d, compare=%d",current->comm,program_name,sig,!strcmp(current->comm,program_name));
+ // printk("program name=%s, Bill name=%s, signal=%d, compare=%d",current->comm,program_name,sig,!strcmp(current->comm,program_name));
   if(strcmp(current->comm,program_name) == 0 && sig == 9){
     return  -EPERM;
   }

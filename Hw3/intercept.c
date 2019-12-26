@@ -24,8 +24,10 @@ module_param(program_name,charp,0660);//TODO get prog name
 asmlinkage long (*original_syscall)(int pid, int sig);
 
 asmlinkage long our_sys_kill(int pid, int sig){
- // printk("program name=%s, Bill name=%s, signal=%d, compare=%d",current->comm,program_name,sig,!strcmp(current->comm,program_name));
-  if(strcmp(current->comm,program_name) == 0 && sig == 9){
+  struct task_struct* tsk=pid_task(find_vpid(pid),PIDTYPE_PID);
+  printk("program name=%s, to ignore name=%s, signal=%d, ignore=%d",tsk->comm,program_name,sig,strcmp(tsk->comm,program_name) == 0 && sig == 9);
+
+ if(strcmp(tsk->comm,program_name) == 0 && sig == 9){
     return  -EPERM;
   }
   return original_syscall(pid,sig);
@@ -77,9 +79,10 @@ This function is called when loading the module (i.e insmod <module_name>)
 */
 int init_module(void) {
   //strcpy(program_name,"Bill");
-  sys_call_table = kallsyms_lookup_name("sys_call_table");
+  sys_call_table = (void**)kallsyms_lookup_name("sys_call_table");
   //printk("adress is:%p",sys_call_table);
    plug_our_syscall();
+  return 0;
 }
 
 void cleanup_module(void) {

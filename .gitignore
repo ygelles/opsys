@@ -1,5 +1,12 @@
+# Hw2
+Hw2/*
+
 # Prerequisites
 *.d
+
+# powerpoint
+*.ppt
+*.pptx
 
 # Compiled Object files
 *.slo

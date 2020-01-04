@@ -12,6 +12,7 @@
 
 int kill(pid_t pid, int sig) {
   printf("welcome to our kill wrapper!\n");
+ // printf("pid=%d,sig=%d\n",pid,sig);//FIXME remove
   int __res;
   __asm__(
   "syscall;"

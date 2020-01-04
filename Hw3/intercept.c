@@ -17,17 +17,16 @@ void allow_rw(unsigned long addr);
 void disallow_rw(unsigned long addr);
 
         void** sys_call_table = NULL;
-        char program_name_memory[16]={'B','i','l','l',0,0,0,0,0,0,0,0,0,0,0,0};
-char* program_name=program_name_memory;
+static char* program_name="Bill";
 module_param(program_name,charp,0660);//TODO get prog name
 
 asmlinkage long (*original_syscall)(int pid, int sig);
 
 asmlinkage long our_sys_kill(int pid, int sig){
   struct task_struct* tsk=pid_task(find_vpid(pid),PIDTYPE_PID);
-  printk("program name=%s, to ignore name=%s, signal=%d, ignore=%d",tsk->comm,program_name,sig,strcmp(tsk->comm,program_name) == 0 && sig == 9);
-
- if(strcmp(tsk->comm,program_name) == 0 && sig == 9){
+  //printk("DEBUG: program name=%s, to ignore name=%s, signal=%d, ignore=%d",tsk->comm,program_name,sig,strcmp(tsk->comm,program_name) == 0 && sig == 9);
+  //printk("DEBUG: tsk=%p",tsk);
+ if(tsk != NULL && strcmp(tsk->comm,program_name) == 0 && sig == 9){
     return  -EPERM;
   }
   return original_syscall(pid,sig);
@@ -80,7 +79,8 @@ This function is called when loading the module (i.e insmod <module_name>)
 int init_module(void) {
   //strcpy(program_name,"Bill");
   sys_call_table = (void**)kallsyms_lookup_name("sys_call_table");
-  //printk("adress is:%p",sys_call_table);
+  //printk("DEBUG: adress is:%p",sys_call_table);
+  //printk("DEBUG: %s",program_name);
    plug_our_syscall();
   return 0;
 }

@@ -656,7 +656,6 @@ deps_/home/student/Hw/Hw3/intercept.o := \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
   arch/x86/include/asm/orc_types.h \
-  include/linux/kallsyms.h \
   include/linux/sched.h \
     $(wildcard include/config/virt/cpu/accounting/native.h) \
     $(wildcard include/config/sched/info.h) \
@@ -751,6 +750,7 @@ deps_/home/student/Hw/Hw3/intercept.o := \
   include/uapi/asm-generic/siginfo.h \
   include/linux/task_io_accounting.h \
     $(wildcard include/config/task/io/accounting.h) \
+  include/linux/kallsyms.h \
 
 /home/student/Hw/Hw3/intercept.o: $(deps_/home/student/Hw/Hw3/intercept.o)
 

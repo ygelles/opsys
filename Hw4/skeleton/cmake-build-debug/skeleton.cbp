@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/Barrier.cpp">
+			<Option target="skeleton"/>
+		</Unit>
+		<Unit filename="C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/Barrier.h">
+			<Option target="skeleton"/>
+		</Unit>
 		<Unit filename="C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/main.cpp">
 			<Option target="skeleton"/>
 		</Unit>

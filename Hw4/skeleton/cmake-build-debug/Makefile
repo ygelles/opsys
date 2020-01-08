@@ -122,6 +122,33 @@ skeleton/fast:
 	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/build
 .PHONY : skeleton/fast
 
+Barrier.obj: Barrier.cpp.obj
+
+.PHONY : Barrier.obj
+
+# target to build an object file
+Barrier.cpp.obj:
+	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/Barrier.cpp.obj
+.PHONY : Barrier.cpp.obj
+
+Barrier.i: Barrier.cpp.i
+
+.PHONY : Barrier.i
+
+# target to preprocess a source file
+Barrier.cpp.i:
+	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/Barrier.cpp.i
+.PHONY : Barrier.cpp.i
+
+Barrier.s: Barrier.cpp.s
+
+.PHONY : Barrier.s
+
+# target to generate assembly for a file
+Barrier.cpp.s:
+	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/Barrier.cpp.s
+.PHONY : Barrier.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -158,6 +185,9 @@ help:
 	@echo ... skeleton
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Barrier.obj
+	@echo ... Barrier.i
+	@echo ... Barrier.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

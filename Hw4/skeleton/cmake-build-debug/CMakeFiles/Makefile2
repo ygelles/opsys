@@ -73,12 +73,12 @@ preinstall:
 CMakeFiles/skeleton.dir/all:
 	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/depend
 	$(MAKE) -f CMakeFiles\skeleton.dir\build.make CMakeFiles/skeleton.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\elia\Documents\GitHub\opsys\Hw4\skeleton\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target skeleton"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\elia\Documents\GitHub\opsys\Hw4\skeleton\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target skeleton"
 .PHONY : CMakeFiles/skeleton.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/skeleton.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\elia\Documents\GitHub\opsys\Hw4\skeleton\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\elia\Documents\GitHub\opsys\Hw4\skeleton\cmake-build-debug\CMakeFiles 3
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/skeleton.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\elia\Documents\GitHub\opsys\Hw4\skeleton\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/skeleton.dir/rule

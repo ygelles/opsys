@@ -1,0 +1,3 @@
+C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/cmake-build-debug/CMakeFiles/skeleton.dir
+C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/elia/Documents/GitHub/opsys/Hw4/skeleton/cmake-build-debug/CMakeFiles/rebuild_cache.dir

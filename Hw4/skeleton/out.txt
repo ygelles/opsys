@@ -1,0 +1,13 @@
+
+Sat Jan 18 20:33:02 2020
+Start testing ThreadSafeList
+Start Test number: 1
+########################################################################### 
+
+Finish Test number: 1
+########################################################################### 
+
+Finish testing ThreadSafeList
+Finished normally... hope for good :) 
+
+Time elapsed: 0.00 sec == 0.000 min 

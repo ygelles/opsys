@@ -7,11 +7,13 @@ class Barrier {
 public:
     Barrier(unsigned int num_of_threads);
     void wait();
-	unsigned int waitingThreads();
+		unsigned int waitingThreads();
     ~Barrier();
-
-	// TODO: define the member variables
-	// Remember: you can only use semaphores!
+		unsigned int numberOfThreads;
+		unsigned int threadsCounter;
+		sem_t barrierSemaphore;
+		sem_t counterSemaphore;
+		sem_t flowSemaphore;
 };
 
 #endif // BARRIER_H_

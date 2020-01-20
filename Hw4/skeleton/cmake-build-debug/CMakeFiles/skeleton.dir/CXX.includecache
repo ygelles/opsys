@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/f/Workspace/opersys/Hw/Hw4/skeleton/Barrier.cpp
+
+/mnt/f/Workspace/opersys/Hw/Hw4/skeleton/ThreadSafeList.h
+pthread.h
+-
+iostream
+-
+iomanip
+-
+
+/mnt/f/Workspace/opersys/Hw/Hw4/skeleton/main.cpp
+iostream
+-
+ThreadSafeList.h
+/mnt/f/Workspace/opersys/Hw/Hw4/skeleton/ThreadSafeList.h
+

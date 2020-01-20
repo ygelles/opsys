@@ -1,10 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/skeleton.dir/Barrier.cpp.obj"
-  "CMakeFiles/skeleton.dir/main.cpp.obj"
-  "libskeleton.dll.a"
-  "skeleton.exe"
-  "skeleton.exe.manifest"
+  "CMakeFiles/skeleton.dir/main.cpp.o"
+  "CMakeFiles/skeleton.dir/Barrier.cpp.o"
   "skeleton.pdb"
+  "skeleton"
 )
 
 # Per-language clean rules from dependency scanning.
